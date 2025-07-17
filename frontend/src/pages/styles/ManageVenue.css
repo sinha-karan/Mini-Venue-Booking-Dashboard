@@ -1,0 +1,71 @@
+.manage-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+.manage-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.venue-details {
+  margin-bottom: 20px;
+}
+
+.venue-details h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.venue-details p {
+  margin: 5px 0 15px;
+  color: #666;
+}
+
+.date-list {
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.date-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.button-group button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  font-size: 16px;
+  color: white;
+  background-color: #007bff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-group button:hover {
+  background-color: #0056b3;
+}

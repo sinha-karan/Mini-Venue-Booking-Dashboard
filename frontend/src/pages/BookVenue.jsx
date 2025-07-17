@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './styles/BookVenue.css';
 
 function BookVenue() {
   const { id } = useParams();
@@ -18,7 +19,7 @@ function BookVenue() {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className="book-venue-container">
       <h2>Book Venue</h2>
       <input placeholder="Your Name" onChange={e => setUserName(e.target.value)} />
       <input type="date" onChange={e => setBookingDate(e.target.value)} />

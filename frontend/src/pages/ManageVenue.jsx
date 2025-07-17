@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import './styles/ManageVenue.css';
 
 function ManageVenue() {
   const { id } = useParams();
@@ -40,28 +41,33 @@ function ManageVenue() {
   };
 
   return (
-    <div>
-      <h2>Manage Venue Availability</h2>
+    <div className="manage-container">
+      <h2 className="manage-title">Manage Venue Availability</h2>
       {venue ? (
         <div>
-          <h3>{venue.name}</h3>
-          <p>{venue.location}</p>
+          <div className="venue-details">
+            <h3>{venue.name}</h3>
+            <p>{venue.location}</p>
+          </div>
 
           <h4>Unavailable Dates:</h4>
-          <ul>
+          <ul className="date-list">
             {venue.unavailableDates.map((d, i) => (
               <li key={i}>{d}</li>
             ))}
           </ul>
 
           <input
+            className="date-input"
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
 
-          <button onClick={blockDate}>Block Date</button>
-          <button onClick={unblockDate}>Unblock Date</button>
+          <div className="button-group">
+            <button onClick={blockDate}>Block Date</button>
+            <button onClick={unblockDate}>Unblock Date</button>
+          </div>
         </div>
       ) : (
         <p>Loading venue info...</p>

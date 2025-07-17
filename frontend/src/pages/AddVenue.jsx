@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import './styles/AddVenue.css';
 
 function AddVenue() {
   const [form, setForm] = useState({
@@ -17,18 +18,18 @@ function AddVenue() {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Add New Venue</h2>
+    <div className="addvenue-container">
+      <h2 className="addvenue-title">Add New Venue</h2>
       {Object.keys(form).map((field) => (
         <input
           key={field}
+          className="addvenue-input"
           placeholder={field}
           value={form[field]}
           onChange={(e) => setForm({ ...form, [field]: e.target.value })}
-          style={{ display: 'block', marginBottom: '10px' }}
         />
       ))}
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={handleSubmit} className="addvenue-btn">Submit</button>
     </div>
   );
 }

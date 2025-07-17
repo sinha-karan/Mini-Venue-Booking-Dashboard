@@ -1,0 +1,27 @@
+/* Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #222;
+  color: white;
+  padding: 10px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.navbar a:hover {
+  color: #00c3ff;
+  text-decoration: underline;
+}
+
+.navbar .logout-link {
+  cursor: pointer;
+}
