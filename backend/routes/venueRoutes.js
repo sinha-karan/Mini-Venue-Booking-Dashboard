@@ -63,8 +63,7 @@ router.put('/:id/unblock', async (req, res) => {
   res.json({ message: 'Dates unblocked' });
 });
 
-// In routes/venueRoutes.js
-// Get venue by ID
+
 router.get('/venues/:id', async (req, res) => {
   const { id } = req.params;
   try {

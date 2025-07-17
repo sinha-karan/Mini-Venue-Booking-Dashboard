@@ -4,73 +4,64 @@ import axios from 'axios';
 
 function ManageVenue() {
   const { id } = useParams();
-  const [blockDate, setBlockDate] = useState('');
-  const [unblockDate, setUnblockDate] = useState('');
   const [venue, setVenue] = useState(null);
+  const [date, setDate] = useState("");
 
   useEffect(() => {
-  axios.get(`http://localhost:5000/venues/${id}`)
-    .then(res => {
-      console.log("Fetched venue:", res.data); // Log the response
-      setVenue(res.data);
-    })
-    .catch(err => {
-      console.error("Error fetching venue:", err); // Log any error
-    });
-}, [id]);
+    axios.get(`http://localhost:5000/venues/${id}`)
+      .then((res) => setVenue(res.data))
+      .catch((err) => console.error("Error fetching venue:", err));
+  }, [id]);
 
-
-  const handleBlock = () => {
-    axios.put(`http://localhost:5000/venues/${id}/block`, {
-      dates: [blockDate.trim()]
-    })
-    .then(() => {
-      alert("Date blocked!");
-      setBlockDate('');
-    })
-    .catch(err => alert("Blocking failed"));
+  const blockDate = () => {
+    axios.put(`http://localhost:5000/venues/${id}/block`, { dates: [date] })
+      .then(res => {
+        alert("Date blocked");
+        setVenue(prev => ({
+          ...prev,
+          unavailableDates: [...prev.unavailableDates, date]
+        }));
+        setDate("");
+      })
+      .catch(err => alert("Block failed"));
   };
 
-  const handleUnblock = () => {
-    axios.put(`http://localhost:5000/venues/${id}/unblock`, {
-      dates: [unblockDate.trim()]
-    })
-    .then(() => {
-      alert("Date unblocked!");
-      setUnblockDate('');
-    })
-    .catch(err => alert("Unblocking failed"));
+  const unblockDate = () => {
+    axios.put(`http://localhost:5000/venues/${id}/unblock`, { dates: [date] })
+      .then(res => {
+        alert("Date unblocked");
+        setVenue(prev => ({
+          ...prev,
+          unavailableDates: prev.unavailableDates.filter(d => d !== date)
+        }));
+        setDate("");
+      })
+      .catch(err => alert("Unblock failed"));
   };
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div>
       <h2>Manage Venue Availability</h2>
-
       {venue ? (
         <div>
           <h3>{venue.name}</h3>
           <p>{venue.location}</p>
-          <p>Blocked Dates: {venue.unavailableDates?.join(', ') || 'None'}</p>
 
-          <div style={{ marginTop: '20px' }}>
-            <h4>Block a Date</h4>
-            <input
-              type="date"
-              value={blockDate}
-              onChange={e => setBlockDate(e.target.value)}
-            />
-            <button onClick={handleBlock} style={{ marginLeft: '10px' }}>Block</button>
-          </div>
+          <h4>Unavailable Dates:</h4>
+          <ul>
+            {venue.unavailableDates.map((d, i) => (
+              <li key={i}>{d}</li>
+            ))}
+          </ul>
 
-          <div style={{ marginTop: '20px' }}>
-            <h4>Unblock a Date</h4>
-            <input
-              type="date"
-              value={unblockDate}
-              onChange={e => setUnblockDate(e.target.value)}
-            />
-            <button onClick={handleUnblock} style={{ marginLeft: '10px' }}>Unblock</button>
-          </div>
+          <input
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+
+          <button onClick={blockDate}>Block Date</button>
+          <button onClick={unblockDate}>Unblock Date</button>
         </div>
       ) : (
         <p>Loading venue info...</p>

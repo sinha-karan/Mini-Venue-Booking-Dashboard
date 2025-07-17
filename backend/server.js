@@ -12,6 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use('/', venueRoutes);
 app.use('/admin', adminRoutes);
 app.use('/venues', venueRoutes);
 app.use('/bookings', bookingRoutes);
