@@ -64,7 +64,7 @@ router.put('/:id/unblock', async (req, res) => {
 });
 
 
-router.get('/venues/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
     const venue = await Venue.findById(id);
