@@ -1,6 +1,6 @@
 Mini Venue Booking Dashboard
 
-A simple full-stack web application to browse, book, and manage venues. Built with Node.js, Express, MongoDB, and a frontend in HTML/CSS/JS (or React).
+A simple full-stack web application to browse, book, and manage venues. Built with Node.js, Express, MongoDB, and a frontend in HTML/CSS/React.
 
 ---
 
@@ -15,9 +15,9 @@ Features
 
  Tech Stack
 
-- rontend: HTML, CSS, JavaScript *(or React)*
+- rontend: HTML, CSS, React
 - Backend: Node.js + Express.js
-- Database:MongoDB Atlas (cloud-hosted)
+- Database:MongoDB Atlas
 
 ---
 
@@ -32,17 +32,21 @@ cd server<img width="1439" height="899" alt="Screenshot 2025-07-17 225749" src="
 
 
 setup backend
-npm install
+npm install express mongoose cors dotenv
 
 .env
 PORT=5000
 MONGODB_URI=your_mongodb_atlas_connection_string
 
-Start Backend
+To Start Backend
 node index.js
 
-start frontend
+setup frontend
 npm install
+npm install react-router-dom axios
+
+To start frontend
+npm run dev
 
 Deployment
 
